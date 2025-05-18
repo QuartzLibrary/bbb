@@ -217,7 +217,15 @@ async fn scores(
     let mut scores = MultiScores::new(phenotypes).await;
 
     let (sample_names, variants) = genomes1000::load_all_simplified().await;
-    let mut variants = variants.peekable();
+    let mut variants = variants
+        .enumerate()
+        .inspect(|(i, _)| {
+            if i % 1_000_000 == 0 {
+                log::info!("[scores] Processing variant {i}");
+            }
+        })
+        .map(|(_, v)| v)
+        .peekable();
 
     while let Some((_filename, summary_stat)) = summary_stats.peek() {
         while let Some(record) = variants.peek() {
@@ -350,7 +358,7 @@ fn load_summary_stats(
         .inspect(|(i, _)| {
             count += 1;
             if i % 1_000_000 == 0 {
-                log::info!("Processing variant {i}");
+                log::info!("[load_summary_stats] Processing variant {i}");
             }
         })
         .map(|(_, v)| v)
@@ -368,7 +376,7 @@ fn load_summary_stats(
 
                 if found37 != s.ref_allele {
                     log::warn!(
-                        "Reference mismatch: found37: {found37}, original: {}",
+                        "[load_summary_stats] Reference mismatch: found37: {found37}, original: {}",
                         s.ref_allele
                     );
                 }
@@ -391,14 +399,16 @@ fn load_summary_stats(
                     let found38 = match grch38.query(&mapped) {
                         Ok(found) => found,
                         Err(e) => {
-                            log::warn!("Error querying grch38: {e} ({mapped:?})");
+                            log::warn!(
+                                "[load_summary_stats] Error querying grch38: {e} ({mapped:?})"
+                            );
                             return None;
                         }
                     };
 
                     match (found38 == new.ref_allele, found38 == new.alt) {
                         (true, true) => {
-                            log::warn!("Found both ref and alt in 38");
+                            log::warn!("[load_summary_stats] Found both ref and alt in 38");
                             None
                         }
                         (true, false) => Some(new),
@@ -408,7 +418,7 @@ fn load_summary_stats(
                             Some(new)
                         }
                         (false, false) => {
-                            log::warn!("Found neither ref nor alt in 38");
+                            log::warn!("[load_summary_stats] Found neither ref nor alt in 38");
                             None
                         }
                     }
