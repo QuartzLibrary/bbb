@@ -20,9 +20,9 @@ path = "src/worker/main.rs"
 [dependencies]
 analysis = { path = "analysis" }
 
-biocore = { git = "https://github.com/QuartzLibrary/bio", rev = "229df7f777223bace12268a5bb3c6ba1b698fdc9" }
-pan_ukbb = { git = "https://github.com/QuartzLibrary/bio", rev = "229df7f777223bace12268a5bb3c6ba1b698fdc9" }
-utile = { git = "https://github.com/QuartzLibrary/bio", rev = "229df7f777223bace12268a5bb3c6ba1b698fdc9" }
+biocore = { git = "https://github.com/QuartzLibrary/bio", rev = "06697c5f0add5747667e805f95fa497d0ee86e04" }
+pan_ukbb = { git = "https://github.com/QuartzLibrary/bio", rev = "06697c5f0add5747667e805f95fa497d0ee86e04" }
+utile = { git = "https://github.com/QuartzLibrary/bio", rev = "06697c5f0add5747667e805f95fa497d0ee86e04" }
 
 leptos_ext = { git = "https://github.com/QuartzLibrary/leptos_ext", rev = "84e0be960509f1ed08a049cf785972f85234f575" }
 

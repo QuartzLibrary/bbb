@@ -458,6 +458,7 @@ dependencies = [
 [[package]]
 name = "biocore"
 version = "0.1.0"
+source = "git+https://github.com/QuartzLibrary/bio?rev=06697c5f0add5747667e805f95fa497d0ee86e04#06697c5f0add5747667e805f95fa497d0ee86e04"
 dependencies = [
  "anyhow",
  "log",
@@ -1228,12 +1229,12 @@ dependencies = [
 [[package]]
 name = "genomes1000"
 version = "0.1.0"
+source = "git+https://github.com/QuartzLibrary/bio?rev=06697c5f0add5747667e805f95fa497d0ee86e04#06697c5f0add5747667e805f95fa497d0ee86e04"
 dependencies = [
  "biocore",
  "csv",
  "either",
  "flate2",
- "itertools",
  "jiff",
  "log",
  "noodles",
@@ -1404,6 +1405,7 @@ dependencies = [
 [[package]]
 name = "hail"
 version = "0.1.0"
+source = "git+https://github.com/QuartzLibrary/bio?rev=06697c5f0add5747667e805f95fa497d0ee86e04#06697c5f0add5747667e805f95fa497d0ee86e04"
 dependencies = [
  "biocore",
  "either",
@@ -1808,6 +1810,7 @@ dependencies = [
 [[package]]
 name = "ids"
 version = "0.1.0"
+source = "git+https://github.com/QuartzLibrary/bio?rev=06697c5f0add5747667e805f95fa497d0ee86e04#06697c5f0add5747667e805f95fa497d0ee86e04"
 dependencies = [
  "serde",
  "thiserror 2.0.12",
@@ -2145,6 +2148,7 @@ dependencies = [
 [[package]]
 name = "liftover"
 version = "0.1.0"
+source = "git+https://github.com/QuartzLibrary/bio?rev=06697c5f0add5747667e805f95fa497d0ee86e04#06697c5f0add5747667e805f95fa497d0ee86e04"
 dependencies = [
  "anyhow",
  "biocore",
@@ -2582,6 +2586,7 @@ dependencies = [
 [[package]]
 name = "pan_ukbb"
 version = "0.1.0"
+source = "git+https://github.com/QuartzLibrary/bio?rev=06697c5f0add5747667e805f95fa497d0ee86e04#06697c5f0add5747667e805f95fa497d0ee86e04"
 dependencies = [
  "biocore",
  "csv",
@@ -2646,6 +2651,7 @@ checksum = "e3148f5046208a5d56bcfc03053e3ca6334e51da8dfb19b6cdc8b306fae3283e"
 [[package]]
 name = "pgs_catalog"
 version = "0.1.0"
+source = "git+https://github.com/QuartzLibrary/bio?rev=06697c5f0add5747667e805f95fa497d0ee86e04#06697c5f0add5747667e805f95fa497d0ee86e04"
 dependencies = [
  "biocore",
  "csv",
@@ -4407,6 +4413,7 @@ checksum = "06abde3611657adf66d383f00b093d7faecc7fa57071cce2578660c9f1010821"
 [[package]]
 name = "utile"
 version = "0.1.0"
+source = "git+https://github.com/QuartzLibrary/bio?rev=06697c5f0add5747667e805f95fa497d0ee86e04#06697c5f0add5747667e805f95fa497d0ee86e04"
 dependencies = [
  "anyhow",
  "async-compression",
