@@ -76,6 +76,13 @@ async fn main() {
 
 #[tokio::test]
 async fn compress() {
+    fn output_path2(phenotype: &PhenotypeManifestEntry) -> FsCacheEntry {
+        CACHE.entry(format!(
+            "output/scores2/{}.json.bz",
+            phenotype.filename.strip_suffix(".tsv.bgz").unwrap()
+        ))
+    }
+
     async fn run(phenotype: PhenotypeManifestEntry) {
         use utile::resource::RawResource;
 
@@ -128,76 +135,6 @@ async fn compress() {
     log_memory(&mut sys);
 }
 
-async fn run_phenotype(
-    phenotype: PhenotypeManifestEntry,
-    lock: &'static tokio::sync::Mutex<()>,
-    liftover: &'static liftover::LiftoverIndexed,
-) {
-    let path = output_path(&phenotype);
-    std::fs::create_dir_all(path.as_ref().parent().unwrap()).unwrap();
-
-    let summary_stats = summary_stats(phenotype.clone(), liftover, lock).await;
-
-    let mut scores = score(phenotype.clone(), summary_stats).await;
-
-    summary_stats_temp_path(&phenotype)
-        .invalidate_async()
-        .await
-        .unwrap();
-
-    Histogram {
-        data: scores.scores().map(|s| s.score).collect(),
-        bins: Some(100),
-    }
-    .show();
-
-    scores.finalize();
-
-    path.write_json(&scores).unwrap();
-
-    log::info!("finished scoring {}", phenotype.filename);
-}
-
-async fn score(
-    phenotype: PhenotypeManifestEntry,
-    summary_stats: impl Iterator<Item = SummaryStats>,
-) -> Scores {
-    let mut summary_stats = summary_stats.peekable();
-    let mut scores = Scores::new(phenotype).await;
-
-    let (sample_names, variants) = genomes1000::load_all_simplified().await;
-    let mut variants = variants.peekable();
-
-    assert_eq!(sample_names.len(), scores.len());
-
-    while let Some(summary_stat) = summary_stats.peek() {
-        while let Some(record) = variants.peek() {
-            let cmp = cmp_variant(record, summary_stat);
-            match cmp {
-                Ordering::Equal => {
-                    let summary_stat = summary_stats.next().unwrap();
-
-                    scores.push_variant(summary_stat, &sample_names, record);
-
-                    variants.next();
-                    break;
-                }
-                Ordering::Less => {
-                    variants.next();
-                }
-                Ordering::Greater => {
-                    let summary_stat = summary_stats.next().unwrap();
-
-                    scores.push_missing(summary_stat);
-
-                    break;
-                }
-            }
-        }
-    }
-
-    scores
-}
 async fn run_phenotypes(
     phenotypes: Vec<PhenotypeManifestEntry>,
     lock: &'static tokio::sync::Mutex<()>,
@@ -522,12 +459,6 @@ fn summary_stats_temp_path(phenotype: &PhenotypeManifestEntry) -> FsCacheEntry {
 
 fn output_path(phenotype: &PhenotypeManifestEntry) -> FsCacheEntry {
     CACHE.entry(format!("output/scores/{}.json", phenotype.filename))
-}
-fn output_path2(phenotype: &PhenotypeManifestEntry) -> FsCacheEntry {
-    CACHE.entry(format!(
-        "output/scores2/{}.json.bz",
-        phenotype.filename.strip_suffix(".tsv.bgz").unwrap()
-    ))
 }
 
 fn log_memory(sys: &mut sysinfo::System) {
