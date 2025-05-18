@@ -1,0 +1,67 @@
+cargo-features = ["profile-rustflags"]
+
+[workspace]
+members = ["./.", "analysis"]
+resolver = "2"
+
+[package]
+name = "bbb"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "app"
+path = "src/app/main.rs"
+
+[[bin]]
+name = "worker"
+path = "src/worker/main.rs"
+
+[dependencies]
+analysis = { path = "analysis" }
+
+biocore = { git = "https://github.com/QuartzLibrary/bio", rev = "229df7f777223bace12268a5bb3c6ba1b698fdc9" }
+pan_ukbb = { git = "https://github.com/QuartzLibrary/bio", rev = "229df7f777223bace12268a5bb3c6ba1b698fdc9" }
+utile = { git = "https://github.com/QuartzLibrary/bio", rev = "229df7f777223bace12268a5bb3c6ba1b698fdc9" }
+
+leptos_ext = { git = "https://github.com/QuartzLibrary/leptos_ext", rev = "84e0be960509f1ed08a049cf785972f85234f575" }
+
+# chrono = "0.4"
+either = "1"
+# instant = "0.1"
+log = "0.4"
+ordered-float = { version = "5", features = ["serde"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+reqwest = { version = "0.12", features = ["json"] }
+send_wrapper = { version = "0.6.0", features = ["futures"] }
+flate2 = "1"
+
+# charming = { version = "0.4", features = ["wasm"] }
+console_error_panic_hook = "0.1"
+console_log = "1"
+gloo-render = "0.2"
+leptos = { version = "0.7", features = ["csr", "rustls"] }
+thaw = { version = "0.4", features = ["csr"] }
+web-sys = { version = "0.3", features = ["Element", "Document", "DomRect"] }
+gloo-console = "0.3"
+gloo-worker = { version = "0.5", features = ["futures"] }
+
+plotly = { version = "0.12", features = ["wasm"] }
+
+wasm-bindgen = "0.2"
+wasm-bindgen-futures = "0.4"
+
+# wasmworker = "0.1"
+# wasmworker-proc-macro = "0.1"
+
+
+getrandom = { version = "0.3", features = ["wasm_js"] }
+getrandom2 = { version = "0.2", features = ["js"], package = "getrandom" }
+rand = "0.9.1"
+futures = "0.3.31"
+
+[patch.crates-io]
+# charming = { git = "https://github.com/yuankunzhang/charming", rev = "c00c808c64d1b64b5678112899bbfb0bac027c87" }
+# wasmworker = { git = "https://github.com/Roba1993/wasmworker", branch = "vite-support" }
+# wasmworker-proc-macro = { git = "https://github.com/Roba1993/wasmworker/proc-macro", branch = "vite-support" }
