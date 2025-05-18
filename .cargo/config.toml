@@ -1,0 +1,15 @@
+[target.wasm32-unknown-unknown]
+rustflags = ['--cfg', 'getrandom_backend="wasm_js"'] # '--cfg', 'leptos_debuginfo' (bug upstream)
+
+# [patch.'https://github.com/QuartzLibrary/bio']
+# biocore = { path = "../bio/biocore" }
+# genomes1000 = { path = "../bio/genomes1000" }
+# hail = { path = "../bio/hail" }
+# ids = { path = "../bio/ids" }
+# liftover = { path = "../bio/liftover" }
+# pan_ukbb = { path = "../bio/pan_ukbb" }
+# pgs_catalog = { path = "../bio/pgs_catalog" }
+# utile = { path = "../bio/utile" }
+
+# [patch.'https://github.com/QuartzLibrary/leptos_ext']
+# leptos_ext = { path = "../leptos_ext" }

@@ -1,0 +1,57 @@
+cargo-features = ["profile-rustflags"]
+
+[workspace]
+members = ["./.", "analysis"]
+resolver = "2"
+
+[package]
+name = "edit"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "app"
+path = "src/app/main.rs"
+
+[[bin]]
+name = "worker"
+path = "src/worker/main.rs"
+
+[dependencies]
+analysis = { path = "analysis" }
+
+biocore = { git = "https://github.com/QuartzLibrary/bio", rev = "171a57a1c46b7c0514e6ea9f1d150bba6f6c24c4" }
+hail = { git = "https://github.com/QuartzLibrary/bio", rev = "171a57a1c46b7c0514e6ea9f1d150bba6f6c24c4" }
+pan_ukbb = { git = "https://github.com/QuartzLibrary/bio", rev = "171a57a1c46b7c0514e6ea9f1d150bba6f6c24c4" }
+utile = { git = "https://github.com/QuartzLibrary/bio", rev = "171a57a1c46b7c0514e6ea9f1d150bba6f6c24c4" }
+
+leptos_ext = { git = "https://github.com/QuartzLibrary/leptos_ext", rev = "84e0be960509f1ed08a049cf785972f85234f575" }
+
+either = "1"
+flate2 = "1"
+log = "0.4"
+ordered-float = { version = "5", features = ["serde"] }
+reqwest = { version = "0.12", features = ["json"] }
+send_wrapper = { version = "0.6.0", features = ["futures"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+web-time = "1"
+
+console_error_panic_hook = "0.1"
+console_log = "1"
+gloo-render = "0.2"
+leptos = { version = "0.7", features = ["csr", "rustls"] }
+thaw = { version = "0.4", features = ["csr"] }
+web-sys = { version = "0.3", features = ["Element", "Document", "DomRect", "MediaQueryList", "MediaQueryListEvent", "MediaQueryListEventInit"] }
+gloo-console = "0.3"
+gloo-worker = { version = "0.5", features = ["futures"] }
+
+plotly = { version = "0.12", features = ["wasm"] }
+
+wasm-bindgen = "0.2"
+wasm-bindgen-futures = "0.4"
+
+getrandom = { version = "0.3", features = ["wasm_js"] }
+getrandom2 = { version = "0.2", features = ["js"], package = "getrandom" }
+rand = "0.9.1"
+futures = "0.3.31"

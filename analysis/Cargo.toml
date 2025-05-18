@@ -1,0 +1,39 @@
+[package]
+name = "analysis"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+biocore = { git = "https://github.com/QuartzLibrary/bio", rev = "171a57a1c46b7c0514e6ea9f1d150bba6f6c24c4" }
+genomes1000 = { git = "https://github.com/QuartzLibrary/bio", rev = "171a57a1c46b7c0514e6ea9f1d150bba6f6c24c4" }
+hail = { git = "https://github.com/QuartzLibrary/bio", rev = "171a57a1c46b7c0514e6ea9f1d150bba6f6c24c4" }
+ids = { git = "https://github.com/QuartzLibrary/bio", rev = "171a57a1c46b7c0514e6ea9f1d150bba6f6c24c4" }
+liftover = { git = "https://github.com/QuartzLibrary/bio", rev = "171a57a1c46b7c0514e6ea9f1d150bba6f6c24c4" }
+pan_ukbb = { git = "https://github.com/QuartzLibrary/bio", rev = "171a57a1c46b7c0514e6ea9f1d150bba6f6c24c4" }
+pgs_catalog = { git = "https://github.com/QuartzLibrary/bio", rev = "171a57a1c46b7c0514e6ea9f1d150bba6f6c24c4" }
+utile = { git = "https://github.com/QuartzLibrary/bio", rev = "171a57a1c46b7c0514e6ea9f1d150bba6f6c24c4" }
+
+bincode = { version = "2", features = ["serde"] }
+brotli = "8"
+csv = "1"
+either = "1"
+flate2 = { version = "1", features = ["zlib-rs"], default-features = false }
+futures = "0.3"
+itertools = "0.14"
+log = "0.4"
+noodles = { version = "0.97", features = ["core", "fasta", "vcf", "tabix", "bgzf"] }
+ordered-float = { version = "5", features = ["serde"] }
+plotly = "0.12"
+serde = { version = "1", features = ["derive", "rc"] }
+serde_json = "1"
+sysinfo = "0.34"
+tempfile = "3"
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+getrandom2 = { version = "0.2", features = ["js"], package = "getrandom" }
+getrandom = { version = "0.3", features = ["wasm_js"] }
+
+
+[dev-dependencies]
+env_logger = "0.11"
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }

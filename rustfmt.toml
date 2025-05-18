@@ -1,0 +1,4 @@
+format_code_in_doc_comments = true
+# wrap_comments = true # wraps commented out code :(
+merge_derives = false
+imports_granularity = "Crate"

@@ -1,0 +1,14 @@
+This site shows <a href="https://en.wikipedia.org/wiki/Genome-wide_association_study">GWAS</a> scores for genomes from
+the <a href="https://www.internationalgenome.org/">1000 Genomes Project</a>.
+For each GWAS, you can simulate the effect of the top [n] edits on these scores.
+The highest impact edits are chosen for each individual, optionally limited to the [m] variants with the lowest
+p-values.
+<br>
+Note that the edits simulated here are not necessarily causal.
+They are of variants statistically associated with traits in GWAS, which may be spurious or due to <a
+    href="https://en.wikipedia.org/wiki/Linkage_disequilibrium">correlation with true causal variants</a>.
+<br>
+Also, the scores shown are not direct measures of the phenotype, but ~roughly the portion of variance in the phenotype
+explained by the genotypes. These are based on effect sizes from GWAS summary statistics and assume additivity (it's a
+<a href="https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1000008">pretty good assumption</a>
+in this case).
