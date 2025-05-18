@@ -46,6 +46,9 @@ jobs:
         # run: trunk build --release --verbose --public-url /${{ github.event.repository.name }}
         run: trunk build --release --verbose
 
+      - name: Single page app
+        run: cp ./dist/index.html ./dist/404.html
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
