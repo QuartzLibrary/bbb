@@ -86,7 +86,7 @@ async fn run_phenotypes(
     log::info!("[PanUKBB][{}] Done scoring", phenotypes.len());
 
     // for phenotype in &phenotypes {
-    //     summary_stats_temp_path(phenotype)
+    //     shared::summary_stats_temp_path(phenotype)
     //         .invalidate_async()
     //         .await
     //         .unwrap();

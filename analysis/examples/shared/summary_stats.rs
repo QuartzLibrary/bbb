@@ -134,11 +134,11 @@ fn load_summary_stats(
     let mut summary_stats: Vec<_> = summary_stats
         .inspect(|_| count += 1)
         .inspect_every(1_000_000, |i, _| {
-            log::info!("[load_summary_stats] Processing variant {i}")
+            log::info!("[load_summary_stats] Processing summary stat {i}")
         })
         .filter(|s| {
             if s.beta_meta.is_none() {
-                // log::warn!("Skipping variant: {:?}", s.at_range());
+                // log::warn!("Skipping summary stat: {:?}", s.at_range());
             }
             s.beta_meta.is_some()
         })

@@ -32,7 +32,8 @@ pub fn output_path_pvalues(phenotype: &PhenotypeManifestEntry) -> FsCacheEntry {
 
 /// Intermediate file for the lifted-over and re-sorted summary stats.
 pub fn summary_stats_temp_path(phenotype: &PhenotypeManifestEntry) -> FsCacheEntry {
-    TEMP_CACHE.entry(phenotype.filename.clone())
+    let filename = phenotype.filename.clone();
+    TEMP_CACHE.entry(format!("lifted/{filename}"))
 }
 /// Intermediate file for the top summary stats by pvalue.
 pub fn summary_stats_pvalues_temp_path(phenotype: &PhenotypeManifestEntry) -> FsCacheEntry {

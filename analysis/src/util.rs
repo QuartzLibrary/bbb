@@ -36,7 +36,7 @@ pub fn std_dev(mean: f64, value: impl Iterator<Item = f64>) -> Option<f64> {
 pub fn passes_qc(phenotype: &PhenotypeManifestEntry) -> bool {
     // Kind of arbitrary, just to shave the number.
     phenotype.pops_pass_qc.contains(&Population::Eur)
-        && phenotype.n_cases_full_cohort_both_sexes > 50_000
+        && phenotype.n_cases_full_cohort_both_sexes > 10_000
 }
 
 pub fn insert_ordered<T, F>(data: &mut Vec<T>, value: T, mut cmp: F)
